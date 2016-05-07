@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.BenchmarkFragment">
+
+    <TextView
+        android:id="@+id/about_txt_scr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:freezesText="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="A really long text that is going on and on but it actually truncated using ellipsis in this example" />
+
+</FrameLayout>
