@@ -11,6 +11,8 @@ public class MovieJsonObject {
     private int total_results;
     private int total_pages;
 
+//    GETTER & SETTER
+
     public int getPage() {
         return page;
     }

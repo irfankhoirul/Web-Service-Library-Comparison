@@ -51,6 +51,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.tvPopularoty.setText(String.valueOf((int) movie.getPopularity()) + " %");
         holder.tvVoteCount.setText(String.valueOf(movie.getVote_count()) + " votes");
 
+
+        /*
+        * Downloading Image
+        * */
         Picasso.with(context)
                 .load(Url.IMAGE_URL + movie.getPoster_path())
                 .placeholder(R.drawable.ic_broken_image)
@@ -58,8 +62,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 .into(holder.imgPoster, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
+                        /*
+                        * Mengolah image yang telah didownload
+                        * */
                         Bitmap bitmap = ((BitmapDrawable) holder.imgPoster.getDrawable()).getBitmap();
-
                         if (bitmap != null && !bitmap.isRecycled()) {
                             Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
                                 @Override
@@ -79,7 +85,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
                     @Override
                     public void onError() {
-
                     }
                 });
     }

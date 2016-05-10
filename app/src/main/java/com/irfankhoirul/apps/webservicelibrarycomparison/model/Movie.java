@@ -21,6 +21,8 @@ public class Movie {
     private boolean video;
     private double vote_average;
 
+    // GETTER & SETTER
+
     public String getPoster_path() {
         return poster_path;
     }

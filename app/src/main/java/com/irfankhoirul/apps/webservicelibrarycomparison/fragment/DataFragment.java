@@ -173,7 +173,8 @@ public class DataFragment extends Fragment {
                         long timeGetResponse = new Date().getTime();
                         Logger.v("OkHTTP->TimeGetResponse", String.valueOf(timeGetResponse));
                         try {
-                            JSONArray jsonMovieList = (new JSONObject(response.body().string())).getJSONArray("results");
+                            JSONArray jsonMovieList = (new JSONObject(response.body().string())).
+                                    getJSONArray("results");
                             Gson gson = new Gson();
                             Movie movie;
                             for (int i = 0; i < jsonMovieList.length(); i++) {
@@ -210,10 +211,12 @@ public class DataFragment extends Fragment {
 
         IMovie movieService = retrofit.create(IMovie.class);
 
-        retrofit2.Call<MovieJsonObject> call = movieService.popularMoviesJSON(Constants.SORT_BY_POPULARITY_DESCENDINF, "1", Constants.API_KEY);
+        retrofit2.Call<MovieJsonObject> call = movieService.popularMoviesJSON(
+                Constants.SORT_BY_POPULARITY_DESCENDINF, "1", Constants.API_KEY);
         call.enqueue(new retrofit2.Callback<MovieJsonObject>() {
             @Override
-            public void onResponse(retrofit2.Call<MovieJsonObject> call, retrofit2.Response<MovieJsonObject> response) {
+            public void onResponse(retrofit2.Call<MovieJsonObject> call,
+                                   retrofit2.Response<MovieJsonObject> response) {
                 movies = response.body().getResults();
                 long timeCompleteParsing = new Date().getTime();
                 Logger.v("Retrofit->TimeCompleteParsing", String.valueOf(timeCompleteParsing));
@@ -225,31 +228,6 @@ public class DataFragment extends Fragment {
                 t.printStackTrace();
             }
         });
-
-/*
-        long timeGetResponse = new Date().getTime();
-        Logger.v("Retrofit->TimeGetResponse", String.valueOf(timeGetResponse));
-        try {
-            JSONArray jsonMovieList = (new JSONObject(response)).getJSONArray("results");
-            Gson gson = new Gson();
-            Movie movie;
-            for (int i = 0; i < jsonMovieList.length(); i++) {
-                movie = gson.fromJson(jsonMovieList.get(i).toString(), Movie.class);
-                movies.add(movie);
-            }
-            long timeCompleteParsing = new Date().getTime();
-            Logger.v("Retrofit->TimeCompleteParsing", String.valueOf(timeCompleteParsing));
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    setupRecyclerView();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-*/
-
     }
 
     private void setupRecyclerView() {
